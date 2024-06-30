@@ -17,10 +17,7 @@ class Solution {
             head = head.next;
         }
 
-        while (deque.peek() != null) {
-            if (deque.size() == 1) {
-                return true;
-            }
+        while (!deque.isEmpty() && deque.size() > 1) {
             if (deque.pollFirst() != deque.pollLast()) {
                 return false;
             }
