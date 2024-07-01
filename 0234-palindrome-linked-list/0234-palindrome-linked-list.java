@@ -10,7 +10,7 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>();
 
         while (head != null) {
             deque.add(head.val);
