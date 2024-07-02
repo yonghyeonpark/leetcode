@@ -10,17 +10,31 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        Deque<Integer> deque = new ArrayDeque<>();
+        ListNode fast = head, slow = head;
 
-        while (head != null) {
-            deque.add(head.val);
-            head = head.next;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
         }
 
-        while (!deque.isEmpty() && deque.size() > 1) {
-            if (deque.pollFirst() != deque.pollLast()) {
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        ListNode rev = null;
+        while (slow != null) {
+            ListNode tem = slow.next;
+            slow.next = rev;
+            rev = slow;
+            slow = tem;
+        }
+
+        while (rev != null) {
+            if (head.val != rev.val) {
                 return false;
             }
+            rev = rev.next;
+            head = head.next;
         }
         return true;
     }
